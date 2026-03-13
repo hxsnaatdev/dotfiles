@@ -9,6 +9,10 @@
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
       }
+      ai-nixCfg = {
+          url = "github:DivitMittal/ai-nixCfg";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
