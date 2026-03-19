@@ -60,3 +60,5 @@ abbr --position anywhere --add v vim
 
 fish_add_path -m /opt/homebrew/bin
 fish_add_path -m /opt/homebrew/sbin
+
+starship init fish | source
