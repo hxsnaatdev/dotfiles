@@ -175,7 +175,7 @@ description = "Indicate the shell was launched by `yazi`"
 symbol = "on 🦆 "
 
 [battery]
-disabled = true
+disabled = false 
 format = "🔋:$symbol "
 charging_symbol = "⚡️"
 discharging_symbol = "💦"
