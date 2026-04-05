@@ -1,6 +1,3 @@
-###################################################
-#vim motions
-
 # Ensure terminal apps (e.g. yazi) use Neovim, not nano.
 set -gx EDITOR nvim
 set -gx VISUAL nvim
@@ -22,16 +19,6 @@ if status is-interactive
     set -x HOMEBREW_NO_ENV_HINTS 1
 end
 
-###################################################
-# minimal looking shell interface , "future me agar super user add krna hai toh krliyo"
-
-###################################################
-#
-#
-#
-function fish_prompt
-    echo -n "ariz ~> "
-end
 #eza
 
 set -l eza_params --all --classify '--icons=always' --group-directories-first '--color=always' --color-scale '--color-scale-mode=gradient' --hyperlink
