@@ -1,6 +1,10 @@
 ###################################################
 #vim motions
 
+# Ensure terminal apps (e.g. yazi) use Neovim, not nano.
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+
 if status is-interactive
     fish_vi_key_bindings
     set -g fish_vi_force_cursor 1
