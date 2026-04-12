@@ -2,7 +2,7 @@ return {
 	{
 		"linux-cultist/venv-selector.nvim",
 		dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-		branch = "regexp", -- Use the latest version
+		branch = "main", -- Use the latest version
 		config = function()
 			require("venv-selector").setup({
 				settings = {
