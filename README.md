@@ -1,124 +1,107 @@
 # dotfiles
 
-Opinionated macOS (aarch64-darwin) setup using **nix-darwin + Home Manager**, with a terminal-first workflow (Fish, Neovim/LazyVim, WezTerm, Starship, Yazi, Zellij, etc.).
+macOS dotfiles powered by **nix-darwin + Home Manager** with a terminal-first setup: Fish, Neovim (LazyVim), WezTerm, Starship, Yazi, Zellij.
 
 This repo is currently the git root of `~/.config`.
 
-## What You Get
+## Highlights
 
-| Area | Tooling | Notes |
-| --- | --- | --- |
-| System | `nix-darwin` | `nix-darwin/flake.nix` manages system packages + macOS defaults |
-| User | Home Manager | `nix-darwin/home.nix` is the active Home Manager module (not tracked here by default) |
-| Shell | Fish | Vi bindings, clipboard yanks, `eza` aliases, `atuin` integration |
-| Prompt | Starship | Custom two-line prompt + rich git status |
-| Editor | Neovim (LazyVim) | `nvim/` bootstraps `lazy.nvim` + a small plugin layer |
-| Terminal | WezTerm | Catppuccin theme, transparency, a couple keybinds |
-| File manager | Yazi | Hidden files on, custom theme, vim-like keymaps, hex preview |
-| Multiplexer | Zellij | Custom keybinds for pane/tab workflows |
-| Misc | btop, fastfetch, gh/gh-dash, karabiner, kitty | Mostly straightforward configs |
+- `nix-darwin/flake.nix`: system packages + macOS defaults
+- `fish/config.fish`: vi mode + clipboard yanks + `eza` aliases + `atuin`
+- `nvim/`: LazyVim bootstrapped via `lazy.nvim`
+- `starship.toml`: custom 2-line prompt
+- `yazi/`: hidden files on + theme + keymaps + hex preview
 
-## Quick Start (macOS)
+## Setup (macOS)
 
-### 1) Clone
-
-If you want to keep your existing `~/.config`, clone elsewhere and symlink what you need.
-
-If you want this repo to *be* `~/.config` (this is how it's currently set up here):
+Clone into `~/.config`:
 
 ```bash
 git clone https://github.com/hxsnaatdev/dotfiles.git ~/.config
 ```
 
-### 2) Install Nix
-
-Install Nix using your preferred method.
-
-This flake expects:
-
-```text
-nix.settings.experimental-features = "nix-command flakes"
-```
-
-### 3) Apply nix-darwin
-
-This repo defines a host configuration in `nix-darwin/flake.nix`:
+Enable flakes (required):
 
 ```nix
-darwinConfigurations."Hasnaats-MacBook-Air" = ...
+# /etc/nix/nix.conf (or equivalent)
+experimental-features = nix-command flakes
 ```
 
-Run:
+Apply nix-darwin:
 
 ```bash
 darwin-rebuild switch --flake ~/.config/nix-darwin#Hasnaats-MacBook-Air
 ```
 
-If your Mac hostname is different, either:
+<details>
+<summary>Different hostname?</summary>
 
-1. Change the attribute name in `nix-darwin/flake.nix`, or
-2. Run `darwin-rebuild switch --flake ~/.config/nix-darwin#<your-hostname>` after updating the flake.
+Your flake output is keyed by the name in `nix-darwin/flake.nix`:
 
-### 4) Home Manager
+```nix
+darwinConfigurations."Hasnaats-MacBook-Air" = nix-darwin.lib.darwinSystem { ... };
+```
 
-Home Manager is wired in via nix-darwin.
+Rename that attribute (or add another one) and then run:
 
-Important: `nix-darwin/flake.nix` imports `./home.nix`, but this repo currently does not track it (it often contains personal paths and machine-specific values). `nix-darwin/home-manager.nix` exists as a reference/template.
+```bash
+darwin-rebuild switch --flake ~/.config/nix-darwin#<your-host>
+```
 
-Create `nix-darwin/home.nix` with your Home Manager config, or change the import to point at a tracked file.
+</details>
 
-## Repo Layout
+<details>
+<summary>Home Manager note</summary>
+
+`nix-darwin/flake.nix` imports `nix-darwin/home.nix`.
+
+That file is intentionally not tracked here by default (it tends to contain personal paths/machine specifics). Use `nix-darwin/home-manager.nix` as a starting point.
+
+</details>
+
+## Layout
 
 ```text
 ~/.config/
-  nix-darwin/          nix-darwin + home-manager entrypoints
-  fish/                shell config (aliases, bindings, functions)
-  nvim/                LazyVim-based Neovim setup
-  wezterm/             terminal config
-  starship.toml        prompt
-  yazi/                file manager config + theme + keymaps
-  zellij/              terminal multiplexer config
-  btop/                system monitor config
-  fastfetch/           system fetch config
-  gh/ gh-dash/         GitHub CLI + dashboard
-  karabiner/           keyboard remaps
-  kitty/               kitty terminal config
-  warpd/               window/navigation tool config
-  opencode/            local plugin deps (kept minimal)
+  nix-darwin/   nix-darwin + home-manager entry
+  fish/         shell config
+  nvim/         Neovim (LazyVim)
+  wezterm/      terminal config
+  yazi/         file manager
+  zellij/       multiplexer
+  starship.toml prompt
 ```
 
-## Notable Behaviors
+## Snippets
 
-### Fish
+Fish: Yazi `cd` integration
 
-`fish/config.fish` includes:
+```fish
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    command yazi $argv --cwd-file="$tmp"
+    if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
+```
 
-- Vi key bindings
-- System clipboard yank/paste bindings
-- `eza`-powered `ls`/`ll`/`lt`
-- `y` function to launch Yazi and `cd` back to its last directory
+Neovim: LazyVim via `lazy.nvim`
 
-### Neovim
+```lua
+-- nvim/init.lua
+require("config.lazy")
+```
 
-`nvim/` bootstraps `lazy.nvim` and loads LazyVim. Minimal plugin overrides live in `nvim/lua/plugins/*`.
+Yazi: add hex previewer
 
-### Starship
-
-Two-line prompt with git status and lots of language modules enabled in `starship.toml`.
-
-### Yazi
-
-`yazi/yazi.toml` enables:
-
-- Hidden files shown by default
-- Rule-based openers (edit vs open vs reveal)
-- Hex preview via `hexyl` (see `append_previewers`)
-
-## Security Notes (Read This Before You Commit)
-
-- Some app configs can contain **tokens** or **secrets**.
-- Example: Raycast’s `config.json` can contain access tokens. Keep that directory out of git, or sanitize it before adding.
-- Before pushing, review changes with `git diff` and `git status`.
+```toml
+# yazi/yazi.toml
+append_previewers = [
+  { name = "*", run = "hexyl" },
+]
+```
 
 ## Updating
 
@@ -127,8 +110,7 @@ git pull
 darwin-rebuild switch --flake ~/.config/nix-darwin#Hasnaats-MacBook-Air
 ```
 
-## Troubleshooting
+## Security
 
-- `darwin-rebuild` can’t find your host: update `darwinConfigurations.<name>` in `nix-darwin/flake.nix`.
-- Home Manager import fails: create `nix-darwin/home.nix` (or point the import at a tracked file).
-- Homebrew note: `nix-darwin/flake.nix` assumes Homebrew is installed separately.
+- `raycast/` is ignored via top-level `.gitignore` (never track it).
+- Before pushing: `git status` and `git diff`.
