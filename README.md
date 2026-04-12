@@ -114,3 +114,4 @@ darwin-rebuild switch --flake ~/.config/nix-darwin#Hasnaats-MacBook-Air
 
 - `raycast/` is ignored via top-level `.gitignore` (never track it).
 - Before pushing: `git status` and `git diff`.
+- Build with caution 
