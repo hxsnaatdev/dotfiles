@@ -246,3 +246,16 @@ sort_translit  = false
 append_previewers = [
 {name = "*" , run = "hexyl" },
 ]
+
+
+
+prepend_previewers = [
+
+{name = "*.tar.gz" , run = "ouch"},
+{name = "*.7zip" , run = "ouch"},
+{name = "*.7z" , run = "ouch"},
+{name = "*.rar" , run = "ouch"},
+{name = "*.lzma" , run = "ouch"},
+{name = "*.lz" , run = "ouch"},
+
+]
