@@ -1,5 +1,3 @@
-
-
 <h1 align='center'>Vim-Cfg</h1>
 <div align='center'>
     <p></p>
