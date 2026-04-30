@@ -1,4 +1,4 @@
-<h1 align='center'>nvim-Cfg</h1>
+<h1 align='center'>CONFIG</h1>
 <div align='center'>
     <p></p>
     <div align='center'>
