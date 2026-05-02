@@ -1,17 +1,6 @@
 <h1 align='center'>CONFIG</h1>
-<div align='center'>
-    <p></p>
-    <div align='center'>
-        <a href='https://github.com/DivitMittal/Vim-Cfg'>
-            <img src='https://img.shields.io/github/repo-size/DivitMittal/Vim-Cfg?&style=for-the-badge&logo=github'>
-        </a>
-    </div>
-    <br>
-</div>
 
 ---
-
-
 
 
 
@@ -56,7 +45,7 @@ darwin-rebuild switch --flake ~/.config/nix-darwin#Hasnaats-MacBook-Air
 Your flake output is keyed by the name in `nix-darwin/flake.nix`:
 
 ```nix
-darwinConfigurations."Hasnaats-MacBook-Air" = nix-darwin.lib.darwinSystem { ... };
+darwinConfigurations."superuser" = nix-darwin.lib.darwinSystem { ... };
 ```
 
 Rename that attribute (or add another one) and then run:
@@ -89,46 +78,4 @@ That file is intentionally not tracked here by default (it tends to contain pers
   starship.toml prompt
 ```
 
-## Snippets
 
-Fish: Yazi `cd` integration
-
-```fish
-function y
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    command yazi $argv --cwd-file="$tmp"
-    if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
-        builtin cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
-end
-```
-
-Neovim: LazyVim via `lazy.nvim`
-
-```lua
--- nvim/init.lua
-require("config.lazy")
-```
-
-Yazi: add hex previewer
-
-```toml
-# yazi/yazi.toml
-append_previewers = [
-  { name = "*", run = "hexyl" },
-]
-```
-
-## Updating
-
-```bash
-git pull
-darwin-rebuild switch --flake ~/.config/nix-darwin#Hasnaats-MacBook-Air
-```
-
-## Security
-
-- `raycast/` is ignored via top-level `.gitignore` (never track it).
-- Before pushing: `git status` and `git diff`.
-- Build with caution 
