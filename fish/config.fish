@@ -33,14 +33,6 @@ abbr --position anywhere --add v vim
 ###################################################
 #yazi 
 
-function y
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    command yazi $argv --cwd-file="$tmp"
-    if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
-        builtin cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
-end
 abbr --position anywhere --add nv nvim
 abbr --position anywhere --add v vim
 
@@ -53,3 +45,12 @@ fish_add_path -m /opt/homebrew/bin
 fish_add_path -m /opt/homebrew/sbin
 
 starship init fish | source
+
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    command yazi $argv --cwd-file="$tmp"
+    if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
