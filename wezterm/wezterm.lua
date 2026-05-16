@@ -7,7 +7,7 @@ config.color_scheme = "Catppuccin Mocha"
 config.font_size = 18.0
 config.font = wezterm.font("Cascadia Code")
 config.macos_window_background_blur = 0
-config.window_background_opacity = 0.80
+config.window_background_opacity = 0.8
 config.window_decorations = "RESIZE"
 
 config.keys = {
