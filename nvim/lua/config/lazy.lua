@@ -15,6 +15,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- mapping of leader keybind and local-leader for manual override
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
