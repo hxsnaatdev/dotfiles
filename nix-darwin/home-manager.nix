@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+inputs{
+    self, nixpkgs,
+  }
 
 {
 
@@ -22,14 +24,7 @@
   };
 
 
-  imports = [  
-    inputs.ai-nixCfg.homeManagerModules.claude-code  
-    inputs.ai-nixCfg.homeManagerModules.codex  
-    inputs.ai-nixCfg.homeManagerModules.github-copilot  
-    inputs.ai-nixCfg.homeManagerModules.crush  
-  ];  
-
-
+  
   home.sessionVariables = {
   };
 
