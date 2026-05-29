@@ -1,3 +1,4 @@
 # Local app state / secrets
 raycast/
 ./github-copilot/
+./nvim/lazy-lock.json
