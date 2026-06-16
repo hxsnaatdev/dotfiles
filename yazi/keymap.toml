@@ -1,0 +1,15 @@
+[[mgr.prepend_keymap]]
+on = ["g", "b"]
+run = "cd ~/Downloads/books/"
+
+
+[[mgr.prepend_keymap]]
+on = ["g", "n"]
+run = "cd ~/.config/nix-darwin/"
+desc = "switch to nix-darwin config"
+
+[[mgr.prepend_keymap]]
+on = ["g", "o"]
+run = "cd  /opt/homebrew/"
+desc = "switch to /opt/homebrew"
+
