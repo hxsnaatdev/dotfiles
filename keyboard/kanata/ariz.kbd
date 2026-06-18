@@ -1,0 +1,106 @@
+(defcfg
+  process-unmapped-keys yes
+  danger-enable-cmd yes
+)
+
+(defvar
+ tap-time 300
+ hold-time 300
+)
+
+
+;;only one defsrc is allowed
+(defsrc
+esc    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv    1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps   a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft   z    x    c    v    b    n    m    ,    .    /    ▲   rsft
+  fn   lctl  lalt lmet          spc         rmet ralt ◀    ▼    ▶
+)
+
+
+(defalias
+mlmet (tap-hold $tap-time $hold-time d lmet)
+mlalt (tap-hold $tap-time $hold-time s lalt)
+mlctl (tap-hold $tap-time $hold-time a lctl)
+mrmet (tap-hold $tap-time $hold-time k rmet)
+mralt (tap-hold $tap-time $hold-time l ralt)
+mretu (tap-hold $tap-time $hold-time tab ret)
+  mappr (tap-hold-press $tap-time $hold-time ret (layer-toggle apps))
+  msymb (tap-hold $tap-time $hold-time bspc (layer-toggle symb))
+  mnavi (tap-hold-press $tap-time $hold-time esc (layer-toggle navi))
+  msyst (tap-hold $tap-time $hold-time s (layer-toggle syst))
+  mhypr (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet)) ;; Hyper key
+  mcopy (tap-hold $tap-time $hold-time c M-c)
+  mpast (tap-hold $tap-time $hold-time v M-v)
+  mmtab (tap-hold $tap-time $hold-time z M-tab)
+  mmgrv (tap-hold $tap-time $hold-time x M-grv)
+)
+
+(defalias
+  aweztr (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh WezTerm)
+  akitty (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh kitty)
+  afiref (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh Firefox "/Users/ariz/Applications/Home Manager Apps/Firefox.app")
+  awhats (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh WhatsApp)
+  aobsid (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh Obsidian)
+  aclaud (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh Claude)
+  avscod (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh "Visual Studio Code")
+  adisco (cmd /Users/ariz/.config/keyboard/kanata/scripts/switch-app.sh Discord)
+)
+
+(defalias
+  sairsw (cmd bash -c "/opt/homebrew/bin/SwitchAudioSource -s 'vivo TWS 3e'; /opt/homebrew/bin/SwitchAudioSource -t input -s 'vivo TWS 3e'")
+)
+
+(deflayer main
+  ;;     a      s      d      f      g      h      j      k      l      ;      '
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     @msymb
+  @mretu q      w      e      r      t      y      u      i      o      p      \      XX     \
+  @mnavi @mlctl @msyst @mlmet @mlalt g      h      @mralt @mrmet l      ;      '      @mappr
+  lsft   @mmtab @mmgrv @mcopy @mpast b      n      m      ,      .      /      XX     rsft
+  XX    XX   XX   @msymb            @mhypr             @mappr      XX         XX     XX     XX
+)
+
+
+(deflayer apps
+  esc  XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX
+  grv  XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX
+  tab  XX      @aweztr XX      XX      XX      XX      XX      XX      XX      @aobsid XX      XX      XX
+  XX   XX      XX      @adisco @afiref XX      XX      XX      @akitty XX      XX      XX      ret
+  lsft XX      XX      @aclaud @avscod XX      XX      XX      @awhats XX      XX      ▲       rsft
+  fn   lctl    lalt    lmet                    spc                     rmet    ralt    ◀       ▼       ▶
+)
+
+
+(deflayer syst
+  ;;   a      s       d       f       g       h       j       k       l       ;       '
+  esc  XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX
+  grv  XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX    XX
+  tab  XX     XX      M-w     XX      XX      prev    brdn    brup    next    ▶⏸      XX      XX    XX
+  XX   XX     XX      XX      XX      XX      M-S-[   XX      XX      M-S-]   XX      XX      ret
+  lsft XX     XX      XX      XX      XX      XX      @sairsw XX      XX      XX      ▲       rsft
+  fn    lctl lalt lmet                 lrld                 rmet  ralt        ◀       ▼       ▶
+)
+
+
+(deflayer symb
+  esc  XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX
+  grv  XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX    XX
+  tab  S-1    S-2     S-3     S-4     S-5     S-6     S-7     S-8     S-9     S-0     XX      XX    XX
+  XX   1      2       3       4       5       6       7       8       9       0       XX      ret
+  lsft XX     XX      XX      [       S-[     S-]     ]       _       .       /       ▲       rsft
+  fn    lctl lalt lmet                  bspc                      rmet    ralt    ◀      ▼       ▶
+)
+
+
+(deflayer navi
+  ;;   a      s       d       f       g       h       j       k       l       ;       '
+  esc  XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX
+  grv  XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX    del
+  tab  q      w       e       XX      XX      S-A-◀   S-A-▼   S-A-▲   S-A-▶      XX      XX      XX    XX
+  XX   a      s       M-[     M-]     XX      ◀       ▼       ▲       ▶       XX      XX      XX
+  lsft XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      ▲       rsft
+  fn    lctl lalt lmet                  _                      rmet    ralt    ◀      ▼       ▶
+)

@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 local config = wezterm.config_builder()
 
-config.adjust_window_size_when_changing_font_size = false
+config.adjust_window_size_when_changing_font_size = true
 config.color_scheme = "Catppuccin Mocha"
 config.font_size = 18.0
 config.font = wezterm.font("Cascadia Code")

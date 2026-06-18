@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nix-darwin, home-manager, ... }:
+  outputs = { self, nix-darwin, home-manager, ... }:
     let
       darwinSystem = nix-darwin.lib.darwinSystem {
         modules = [
@@ -28,9 +28,6 @@
     {
       darwinConfigurations."Hasnaats-MacBook-Air" = darwinSystem;
       darwinConfigurations."ariz" = darwinSystem;
+      darwinPackages = self.darwinConfigurations."Hasnaats-MacBook-Air".pkgs;
     };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."Omers-MacBook-Pro".pkgs;
-  };
 }

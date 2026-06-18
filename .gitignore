@@ -1,3 +1,8 @@
 # Local app state / secrets
-raycast/
-./github-copilot/
+/raycast/
+/github-copilot/
+/github-copilot/auth.db*
+/karabiner
+
+# Generated lock/state files
+/nvim/lazy-lock.json
