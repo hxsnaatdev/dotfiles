@@ -3,6 +3,7 @@
 /github-copilot/
 /github-copilot/auth.db*
 /karabiner
+./btop/
 
 # Generated lock/state files
 /nvim/lazy-lock.json
