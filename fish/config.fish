@@ -33,6 +33,7 @@ abbr --position anywhere --add v vim
 #changed the path to as suggestes by brew doctor 
 fish_add_path -m /opt/homebrew/bin
 fish_add_path -m /opt/homebrew/sbin
+fish_add_path -m /Users/ariz/.local/share/nvim/mason/staging/nil/bin
 
 #starship (config)
 starship init fish | source
