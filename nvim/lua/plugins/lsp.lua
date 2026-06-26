@@ -7,7 +7,7 @@ return {
 				settings = {
 					["nil"] = {
 						formatting = {
-							command = { "alejandra" },
+							command = { "/Users/ariz/.local/share/nvim/mason/bin/alejandra" },
 						},
 					},
 				},
