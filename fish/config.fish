@@ -1,4 +1,3 @@
-# Ensure terminal apps (e.g. yazi) use Neovim, not nano.
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
@@ -24,9 +23,6 @@ set -l eza_params --all --classify '--icons=always' --group-directories-first '-
 alias ls "eza $eza_params"
 alias lt "eza --tree --level=2 $eza_params"
 alias ll "eza -lbhHigUmuSa@ $eza_params | ov -H1"
-abbr --position anywhere --add nv nvim
-abbr --position anywhere --add v vim
-
 abbr --position anywhere --add nv nvim
 abbr --position anywhere --add v vim
 
