@@ -25,6 +25,7 @@ alias lt "eza --tree --level=2 $eza_params"
 alias ll "eza -lbhHigUmuSa@ $eza_params | ov -H1"
 abbr --position anywhere --add nv nvim
 abbr --position anywhere --add v vim
+abbr --position anywhere --add op opencode
 
 #changed the path to as suggestes by brew doctor 
 fish_add_path -m /opt/homebrew/bin
