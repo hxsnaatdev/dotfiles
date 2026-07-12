@@ -4,6 +4,8 @@
 /github-copilot/auth.db*
 /karabiner
 ./btop/
+./nix-darwin 
+
 
 # Generated lock/state files
 /nvim/lazy-lock.json
