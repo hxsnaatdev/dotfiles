@@ -26,6 +26,10 @@ alias ll "eza -lbhHigUmuSa@ $eza_params | ov -H1"
 abbr --position anywhere --add nv nvim
 abbr --position anywhere --add v vim
 abbr --position anywhere --add op opencode
+abbr --position anywhere --add zz zellij
+abbr --position anywhere --add b btop
+abbr --position anywhere --add lg lazygit
+abbr --position anywhere --add s sioyek
 
 #changed the path to as suggestes by brew doctor 
 fish_add_path -m /opt/homebrew/bin
