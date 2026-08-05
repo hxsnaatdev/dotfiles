@@ -12,3 +12,7 @@ desc = "switch to nix-darwin config"
 on = ["g", "o"]
 run = "cd  /opt/homebrew/"
 desc = "switch to /opt/homebrew"
+
+[[mgr.prepend_keymap]]
+on = ["g", "p"]
+run = "cd /Users/ariz/proj/"
