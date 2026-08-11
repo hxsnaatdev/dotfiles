@@ -1,5 +1,5 @@
 format = """
-[╭─env─-➜❯](bold blue) \
+[╭─env─➜❯](bold blue) \
 $sudo\
 $username\
 $hostname\
@@ -13,7 +13,7 @@ $directory\
 $git_branch\
 $git_commit\
 $git_status\n\
-[╰─cmd─➜❯](bold green) \
+[╰─cmd~~>❯](bold green) \
 $character"""
 
 right_format = """
