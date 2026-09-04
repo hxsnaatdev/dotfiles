@@ -7,7 +7,7 @@ config.color_scheme = "Catppuccin Mocha"
 config.font_size = 18.0
 config.font = wezterm.font("Cascadia Code")
 config.macos_window_background_blur = 0
-config.window_background_opacity = 0.8
+config.window_background_opacity = 1
 config.window_decorations = "RESIZE"
 
 config.keys = {
@@ -47,8 +47,8 @@ tabline.setup({
 			{ "zoomed", padding = 0 },
 		},
 		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
-		tabline_x = { "ram", "cpu" },
-		tabline_y = { "datetime", "battery" },
+		tabline_x = {},
+		tabline_y = { "battery" },
 	},
 })
 
