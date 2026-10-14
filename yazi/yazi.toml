@@ -2,3 +2,7 @@
 
 sort_by = "mtime"
 sort_sensitive = true
+
+[[plugin.prepend_previews]]
+name = "*.excalidraw"
+run = "code"

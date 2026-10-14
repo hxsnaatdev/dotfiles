@@ -16,3 +16,14 @@ desc = "switch to /opt/homebrew"
 [[mgr.prepend_keymap]]
 on = ["g", "p"]
 run = "cd /Users/ariz/proj/"
+
+[[mgr.prepend_keymap]]
+on = ["g", "l"]
+run = "cd ~/learnings/"
+desc = "switch to learnings"
+
+
+[[mgr.prepend_keymap]]
+on = ["g", "s"] 
+run = "cd ~/SecondBrain/"
+desc = "switch to SecondBrain"
